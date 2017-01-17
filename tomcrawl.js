@@ -16,7 +16,7 @@ var handlebars = require('express3-handlebars')
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 80);
 
 app.use(express.static(__dirname + '/public'));
 
@@ -36,7 +36,7 @@ app.get('/about', function(req,res){
 	client.query("use " + TEST_DATABASE);
 	
 	client.query(  
-	  'SELECT * FROM '+TEST_TABLE,  
+	  'SELECT * FROM '+TEST_TABLE+' ORDER BY created desc',  
 	  function selectCb(err, results, fields) {  
 	    if (err) {  
 	      throw err;  
@@ -66,7 +66,7 @@ app.use(function(err, req, res, next){
 	res.render('500');
 });
 
-app.listen(app.get('port'), function(){
+app.listen(app.get('port'),'0.0.0.0', function(){
   console.log( 'Express started on http://localhost:' + 
     app.get('port') + '; press Ctrl-C to terminate.' );
 });

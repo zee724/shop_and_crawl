@@ -6,3 +6,5 @@ node_modules
 .DS_Store
 config.js
 *~
+lib/crawl/log.txt
+lib/crawl/key_packs
